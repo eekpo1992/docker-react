@@ -1,0 +1,11 @@
+# make sure we have superuser level requirements
+sudo: required
+services:
+  - docker
+
+# Test phase
+before_install:
+  - docker build -t eekpo1992/docker-react -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true eekpo1992/docker-react npm run test
